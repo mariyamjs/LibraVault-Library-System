@@ -1,0 +1,21 @@
+flowchart TD
+    A([User selects a book]) --> B[Frontend sends borrow request]
+    B --> C[API Gateway validates request]
+    C --> D[Loan Service checks availability]
+
+    D --> E{Copy available?}
+
+    E -- Yes --> F[Create loan record]
+    F --> G[Update copy status to borrowed]
+    G --> H([Return success response])
+
+    E -- No --> I[Offer reservation option]
+    I --> J([Return unavailable message])
+
+    classDef startend fill:#dcfce7,stroke:#16a34a,stroke-width:2px;
+    classDef process fill:#f3f4f6,stroke:#6b7280,stroke-width:2px;
+    classDef decision fill:#fef3c7,stroke:#d97706,stroke-width:2px;
+
+    class A,H,J startend;
+    class B,C,D,F,G,I process;
+    class E decision;

@@ -1,0 +1,32 @@
+flowchart TD
+    U[User Browser] --> F[Frontend<br/>HTML / CSS / JavaScript]
+    F --> A[Flask API Gateway]
+
+    subgraph Backend Services
+        US[User Service]
+        CS[Catalog Service]
+        LS[Loan and Reservation Service]
+        RS[Recommendation Service]
+    end
+
+    A --> US
+    A --> CS
+    A --> LS
+    A --> RS
+
+    DB[(Library Database)]
+
+    US --> DB
+    CS --> DB
+    LS --> DB
+    RS --> DB
+
+    classDef frontend fill:#dbeafe,stroke:#2563eb,stroke-width:2px;
+    classDef api fill:#bfdbfe,stroke:#1d4ed8,stroke-width:2px;
+    classDef service fill:#ede9fe,stroke:#7c3aed,stroke-width:2px;
+    classDef db fill:#e5e7eb,stroke:#374151,stroke-width:2px;
+
+    class F frontend;
+    class A api;
+    class US,CS,LS,RS service;
+    class DB db;
